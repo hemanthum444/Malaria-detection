@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 100% of the viewport height */
+            margin: 0;
+            background-image: url("C:/Users/user/Downloads/malaria/static/background.jpg"); /* Add the path to your background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+        }
+
+        h2 {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 34px;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            color: #007bff;
+        }
+
+        p {
+            font-style: italic;
+            color: #555;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 300px; /* Adjust as needed */
+            width: 100%;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"],
+        button {
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            width: 100%;
+        }
+
+        input[type="submit"],
+        button {
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function toggleForm() {
+            var registerForm = document.getElementById("register-form");
+            var loginForm = document.getElementById("login-form");
+            var submitButton = document.getElementById("submit-button");
+            
+            if (registerForm.style.display === "none") {
+                registerForm.style.display = "block";
+                loginForm.style.display = "none";
+                submitButton.value = "Register";
+            } else {
+                registerForm.style.display = "none";
+                loginForm.style.display = "block";
+                submitButton.value = "Login";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h2>Malaria Detection</h2>
+        <p>Fill out the form below to either register or login:</p>
+        <form id="register-form" style="display: none;" method="post" action="/register">
+            <label for="username_register">Username:</label><br>
+            <input type="text" id="username_register" name="username" required><br><br>
+            <label for="password_register">Password:</label><br>
+            <input type="password" id="password_register" name="password" required><br><br>
+            <input type="submit" value="Register">
+        </form>
+        <form id="login-form" method="post" action="/login">
+            <label for="username_login">Username:</label><br>
+            <input type="text" id="username_login" name="username" required><br><br>
+            <label for="password_login">Password:</label><br>
+            <input type="password" id="password_login" name="password" required><br><br>
+            <input type="submit" id="submit-button" value="Login">
+        </form>
+        <button onclick="toggleForm()">Switch to {{'Login' if not is_logged_in() else 'Register'}}</button>
+    </div>
+</body>
+</html>
