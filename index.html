@@ -73,17 +73,28 @@
         function toggleForm() {
             var registerForm = document.getElementById("register-form");
             var loginForm = document.getElementById("login-form");
-            var submitButton = document.getElementById("submit-button");
-            
+            var toggleButton = document.getElementById("toggle-button");
+
             if (registerForm.style.display === "none") {
                 registerForm.style.display = "block";
                 loginForm.style.display = "none";
-                submitButton.value = "Register";
+                toggleButton.textContent = "Switch to Login";
             } else {
                 registerForm.style.display = "none";
                 loginForm.style.display = "block";
-                submitButton.value = "Login";
+                toggleButton.textContent = "Switch to Register";
             }
+        }
+
+        window.onload = function() {
+            // Initialize the form display and button text
+            var registerForm = document.getElementById("register-form");
+            var loginForm = document.getElementById("login-form");
+            var toggleButton = document.getElementById("toggle-button");
+
+            registerForm.style.display = "none";
+            loginForm.style.display = "block";
+            toggleButton.textContent = "Switch to Register";
         }
     </script>
 </head>
@@ -105,7 +116,7 @@
             <input type="password" id="password_login" name="password" required><br><br>
             <input type="submit" id="submit-button" value="Login">
         </form>
-        <button onclick="toggleForm()">Switch to {{'Login' if not is_logged_in() else 'Register'}}</button>
+          <button id="toggle-button" onclick="toggleForm()">Switch to Register</button>
     </div>
 </body>
 </html>
